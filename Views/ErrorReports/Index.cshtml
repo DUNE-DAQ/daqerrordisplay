@@ -1,0 +1,82 @@
+﻿@model IEnumerable<DuneDaqErrorReporting.Models.ErrorReport>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+<style>
+    .twocol {
+        column-count: 2;
+        column-gap: 40px;
+    }
+</style>
+
+
+<select id="filter-field">
+    <option></option>
+    <option value="application_name">Application Name</option>
+    <option value="chain">Chain</option>
+    <option value="cwd">Current Working Directory</option>
+    <option value="file_name">File name</option>
+    <option value="function_name">Function name</option>
+    <option value="group_hash">Group hash</option>
+    <option value="host_name">Host name</option>
+    <option value="issue_name">Issue name</option>
+    <option value="line_number">Line number</option>
+    <option value="message">Message</option>
+    <option value="package_name">Package name</option>
+    <option value="parameters">Parameters</option>
+    <option value="partition">Partition</option>
+    <option value="process_id">Process ID</option>
+    <option value="qualifiers">Qualifiers</option>
+    <option value="severity">Severity</option>
+    <option value="thread_id">Thread ID</option>
+    <option value="time">Time</option>
+    <option value="usecs_since_epoch">Time from epoch</option>
+    <option value="user_id">User ID</option>
+    <option value="user_name">User name</option>
+</select>
+
+<select id="filter-type">
+    <option value="=">=</option>
+    <option value="<"><</option>
+    <option value="<="><=</option>
+    <option value=">">></option>
+    <option value=">=">>=</option>
+    <option value="!=">!=</option>
+    <option value="like">like</option>
+</select>
+
+<input id="filter-value" type="text" placeholder="value to filter">
+<button id="filter-apply">Apply filter</button>
+<button id="filter-clear">Clear filter</button>
+
+<div id="activeFilters">
+
+</div>
+
+
+<div class="row">
+
+    <div id="table"></div>
+
+    <div id="plotsContainer">
+        <div id="chartPlaceholderPie" class="column"> </div>
+        <div id="chartPlaceholderFrequency" class="column"> </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div id="chartPlaceholderFunction" class="column"> </div>
+    <div id="chartPlaceholderHost" class="column"> </div>
+    <div id="chartPlaceholderIssue" class="column"> </div>
+</div>
+
+
+
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/errordisplay.js"></script>

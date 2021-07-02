@@ -1,0 +1,144 @@
+﻿@model DuneDaqErrorReporting.Models.ErrorReport
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>ErrorReport</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.application_name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.application_name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.chain)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.chain)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.cwd)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.cwd)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.file_name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.file_name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.function_name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.function_name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.group_hash)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.group_hash)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.host_name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.host_name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.issue_name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.issue_name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.line_number)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.line_number)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.message)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.message)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.package_name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.package_name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.parameters)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.parameters)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.partition)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.partition)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.process_id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.process_id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.qualifiers)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.qualifiers)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.severity)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.severity)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.thread_id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.thread_id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.time)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.time)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.usecs_since_epoch)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.usecs_since_epoch)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.user_id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.user_id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.user_name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.user_name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
