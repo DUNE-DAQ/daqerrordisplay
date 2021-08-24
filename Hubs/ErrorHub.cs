@@ -23,7 +23,7 @@ namespace DuneDaqErrorReporting.Hubs
 
         public override Task OnConnectedAsync()
         {
-            var errorDatasInput = applicationDbContext.ErrorReports.OrderByDescending(er => er.time).Take(20000).ToList();
+            var errorDatasInput = applicationDbContext.ErrorReports.OrderByDescending(er => er.time).Take(20000).ToList();  
             SendInitData(errorDatasInput);
 
             return base.OnConnectedAsync();

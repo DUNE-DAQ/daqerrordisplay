@@ -94,7 +94,6 @@ namespace DuneDaqErrorReporting.Services
                 catch (Exception e)
                 {
                     Console.WriteLine($"Unexpected error: {e}");
-                    break;
                 }
 
             }

@@ -37,27 +37,27 @@ var table = new Tabulator();
 
 function GenerateTableHead() {
     var tableHeads = [];
-    tableHeads.push({ title: "Application Name", field: "application_name", visible: false});
+    tableHeads.push({ title: "Time", field: "time", responsive: 0 });
+    tableHeads.push({ title: "Application Name", field: "application_name", responsive: 0 });
+    tableHeads.push({ title: "Issue name", field: "issue_name", responsive: 0 });
+    tableHeads.push({ title: "Message", field: "message", responsive: 0 });
+    tableHeads.push({ title: "Host name", field: "host_name", responsive: 0 });
+    tableHeads.push({ title: "Severity", field: "severity", responsive: 0 });
     tableHeads.push({ title: "Chain", field: "chain", visible: false});
     tableHeads.push({ title: "Current Working Directory", field: "cwd", visible: false});
     tableHeads.push({ title: "File name", field: "file_name", visible: false});
-    tableHeads.push({ title: "Function name", field: "function_name", responsive: 0});
+    tableHeads.push({ title: "Function name", field: "function_name", visible: false});
     tableHeads.push({ title: "Group hash", field: "group_hash", visible: false});
-    tableHeads.push({ title: "Host name", field: "host_name", responsive: 1});
-    tableHeads.push({ title: "Issue name", field: "issue_name", responsive: 1});
     tableHeads.push({ title: "Line number", field: "line_number", visible: false});
-    tableHeads.push({ title: "Message", field: "message", responsive: 2});
     tableHeads.push({ title: "Package name", field: "package_name", visible: false});
     tableHeads.push({ title: "Parameters", field: "parameters", visible: false});
     tableHeads.push({ title: "Partition", field: "partition", visible: false});
     tableHeads.push({ title: "Process ID", field: "process_id", visible: false});
     tableHeads.push({ title: "Qualifiers", field: "qualifiers", visible: false});
-    tableHeads.push({ title: "Severity", field: "severity", responsive: 1});
     tableHeads.push({ title: "Thread ID", field: "thread_id", visible: false});
-    tableHeads.push({ title: "Time", field: "time", responsive: 0});
     tableHeads.push({ title: "Time from epoch", field: "usecs_since_epoch", visible: false});
     tableHeads.push({ title: "User ID", field: "user_id", visible: false});
-    tableHeads.push({ title: "User name", field: "user_name", responsive: 1});
+    tableHeads.push({ title: "User name", field: "user_name", visible: false});
     tableHeads.push({ title: "Details", field: "details", formatter: "link", formatterParams: { label: "Details" }, responsive: 0})
     return tableHeads;
 }
@@ -74,22 +74,25 @@ function InitTable() {
             //data - an array of all the row data objects in this group
             //group - the group component for the group
 
-            var topIssue = data.find(x => x.chain == 0);
+
+            //Get first value of the chain
+            var topIssue = data.find(x => x.chain == Math.min.apply(Math, data.map(x => x.chain)));
 
             switch (topIssue.severity) {
                 case "WARNING":
-                    return "<span style='color:#FFFF66; margin-left:10px;'>" + topIssue.function_name + " - " + topIssue.issue_name + " - " + topIssue.time + " (" + count + " item)</span>";
+                    return "<span style='color:#FFFF66; margin-left:10px;'>" + topIssue.application_name + " - " + topIssue.issue_name + " (" + count + " item)</span>";
                     break;
                 case "ERROR":
-                    return "<span style='color:#FF9966; margin-left:10px;'>" + topIssue.function_name + " - " + topIssue.issue_name + " - " + topIssue.time + " (" + count + " item)</span>";
+                    return "<span style='color:#FF9966; margin-left:10px;'>" + topIssue.application_name + " - " + topIssue.issue_name + " (" + count + " item)</span>";
                     break;
                 case "FATAL":
-                    return "<span style='color:#FF0000; margin-left:10px;'>" + topIssue.function_name + " - " + topIssue.issue_name + " - " + topIssue.time + " (" + count + " item)</span>";
+                    return "<span style='color:#FF0000; margin-left:10px;'>" + topIssue.application_name + " - " + topIssue.issue_name + " (" + count + " item)</span>";
                     break;
                 default:
-                    return "<span style='color:#000000; margin-left:10px;'>" + topIssue.function_name + " - " + topIssue.issue_name + " - " + topIssue.time + " (" + count + " item)</span>";
-
+                    return "<span style='color:#000000; margin-left:10px;'>" + topIssue.application_name + " - " + topIssue.issue_name + " (" + count + " item)</span>";
             }
+        
+            
 
         },
 
@@ -119,12 +122,6 @@ function InitTable() {
         ]
     });
     table.setData(errorDatas);
-}
-
-
-//Custom filter example
-function customFilter(data) {
-    return data.car && data.rating < 3;
 }
 
 var filters = [];
@@ -177,13 +174,10 @@ function PrintPlots() {
 
     Plotly.newPlot('chartPlaceholderPie', pieData);
 
-    var histoData = HistoData();
+    //var histoData = HistoData();
 
-    Plotly.newPlot('chartPlaceholderFrequency', histoData);
+    //Plotly.newPlot('chartPlaceholderFrequency', histoData);
 
-    var histoData = PieData("function_name");
-
-    Plotly.newPlot('chartPlaceholderFunction', histoData);
 
     var histoData = PieData("host_name");
 
@@ -225,9 +219,12 @@ function HistoData() {
 
     var values = [];
 
+
+    //ERROR IN SORTING
+    errorDatas = errorDatas.sort((a, b) => a.time.localeCompare(b.time));
+
     for (let key of Object.keys(errorDatasTypeCounts)) {
         var errorDatasWithKeys = errorDatas.filter(x => x.severity == key);
-        errorDatasWithKeys = errorDatasWithKeys.sort((a, b) => a.time.localeCompare(b.time));
 
         var xAxis = [];
         var yAxis = [];

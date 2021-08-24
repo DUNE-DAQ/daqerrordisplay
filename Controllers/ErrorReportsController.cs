@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace DuneDaqErrorReporting.Controllers
 {
-    [Authorize]
+
     public class ErrorReportsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,6 +24,7 @@ namespace DuneDaqErrorReporting.Controllers
         // GET: ErrorReports
         public async Task<IActionResult> Index()
         {
+            ViewBag.Initializer = _context.ErrorReports.FirstOrDefault();
             return View();
         }
 
