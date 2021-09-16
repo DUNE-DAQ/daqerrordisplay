@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace DuneDaqErrorReporting.Controllers
 {
-
+    [Authorize]
     public class ErrorReportsController : Controller
     {
         private readonly ApplicationDbContext _context;

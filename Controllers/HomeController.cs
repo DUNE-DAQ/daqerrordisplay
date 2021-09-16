@@ -32,6 +32,7 @@ namespace DuneDaqErrorReporting.Controllers
 
         public IActionResult Index()
         {
+       
             return RedirectToAction("Index", "ErrorReports", null);
 
         }      
