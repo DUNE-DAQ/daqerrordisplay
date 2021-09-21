@@ -50,6 +50,7 @@ namespace DuneDaqErrorReporting
 
             var manager = new ConfigurationManager<OpenIdConnectConfiguration>(Configuration.GetValue<string>("LogginService:WellKnown"), new OpenIdConnectConfigurationRetriever());
 
+            /*
             services.AddAuthentication()
                 .AddOpenIdConnect("CERN", c => {
                     c.ConfigurationManager = manager;
@@ -58,7 +59,7 @@ namespace DuneDaqErrorReporting
                     c.Authority = "https://auth.cern.ch";
                     c.ResponseType = "code";
                 });
-
+            */
 
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -70,8 +71,8 @@ namespace DuneDaqErrorReporting
                 options.Preload = true;
                 options.IncludeSubDomains = true;
                 options.MaxAge = TimeSpan.FromDays(60);
-                options.ExcludedHosts.Add("http://test-dunedqm.app.cern.ch");
-                options.ExcludedHosts.Add("http://www.test-dunedqm.app.cern.ch");
+                //options.ExcludedHosts.Add("http://test-dunedqm.app.cern.ch");
+                //options.ExcludedHosts.Add("http://www.test-dunedqm.app.cern.ch");
             });
         }
 
