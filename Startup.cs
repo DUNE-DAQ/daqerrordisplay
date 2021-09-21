@@ -48,9 +48,12 @@ namespace DuneDaqErrorReporting
 
             services.AddHostedService<KafkaConsumer>();
 
+            
+            
+            /*
             var manager = new ConfigurationManager<OpenIdConnectConfiguration>(Configuration.GetValue<string>("LogginService:WellKnown"), new OpenIdConnectConfigurationRetriever());
 
-            /*
+            
             services.AddAuthentication()
                 .AddOpenIdConnect("CERN", c => {
                     c.ConfigurationManager = manager;
